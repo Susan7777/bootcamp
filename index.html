@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My portfolio</title>
+    <style>
+      .main {
+        text-align: center;
+        display: flex;
+        font-family: Arial, sans-serif;
+        justify-content: center;
+        background-color: #3c5a99;
+        color: antiquewhite;
+      }
+      .twitter-section {
+        text-align: center;
+      }
+      .twitter-timeline {
+        color: #fafafa;
+      }
+      #ProfileImage {
+        height: auto;
+        max-width: 100%;
+      }
+      .twitter-heading {
+        justify-content: center;
+        display: flex;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        font-size: 30px;
+        width: 30vw;
+      }
+      .public-info {
+        width: 30vw;
+      }
+      body {
+        max-width: 100%;
+        background-color: #3c5a99;
+      }
+      #div-tweet {
+        display: flex;
+      }
+      #githubLink {
+        color: #fcb849;
+      }
+      .project_heading {
+        font-size: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div>
+        <div class="public-info">
+          <img
+            id="ProfileImage"
+            alt="profile photo"
+            height="150px"
+            width="150px"
+          />
+          <h2 id="fullName"></h2>
+          <p id="bio"></p>
+          <h5 id="followersInformation"></h5>
+          <p>Check me on <a id="githubLink">Github</a></p>
+        </div>
+      </div>
+      <div>
+        <div>
+          <b class="project_heading">My Project Detail</b>
+          <p id="repo_detail" justify-content="center"></p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      fetch("https://api.github.com/users/Susan7777")
+        .then((response) => response.json())
+        .then(function (data) {
+          let followersCount = data["followers"];
+          let followersInfo = `I have been followed by ${followersCount} people on Github`;
+          console.log(data);
+          document.getElementById("ProfileImage").src = data["avatar_url"];
+          document.getElementById("fullName").textContent = data["name"];
+          document.getElementById("bio").textContent = data["bio"];
+          document.getElementById("followersInformation").textContent =
+            followersInfo;
+          document.getElementById("githubLink").href = data["html_url"];
+        });
+      fetch("https://api.github.com/users/Susan7777/repos")
+        .then((call) => call.json())
+        .then(function (info) {
+          console.log(info);
+          var output = "";
+
+          for (var property in info) {
+            output +=
+              "Repo Name: " +
+              info[property].name +
+              "; <br>" +
+              "Repo Url: " +
+              info[property].html_url +
+              "<br> <br> <br>";
+          }
+
+          document.getElementById("repo_detail").innerHTML =
+            JSON.stringify(output);
+        });
+    </script>
+  </body>
+</html>
