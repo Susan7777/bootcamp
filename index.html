@@ -11,14 +11,14 @@
         display: flex;
         font-family: Arial, sans-serif;
         justify-content: center;
-        background-color: #3c5a99;
-        color: antiquewhite;
+        background-color: lightyellow;
+        color: black;
       }
       .twitter-section {
         text-align: center;
       }
       .twitter-timeline {
-        color: #fafafa;
+        color: black;
       }
       #ProfileImage {
         height: auto;
@@ -37,13 +37,13 @@
       }
       body {
         max-width: 100%;
-        background-color: #3c5a99;
+        background-color: lightyellow;
       }
       #div-tweet {
         display: flex;
       }
       #githubLink {
-        color: #fcb849;
+        color: blue;
       }
       .project_heading {
         font-size: 24px;
@@ -99,9 +99,9 @@
               "Repo Name: " +
               info[property].name +
               "; <br>" +
-              "Repo Url: " +
+              "Repo Url: <a style='color: blue'>" +
               info[property].html_url +
-              "<br> <br> <br>";
+              "</a> <br> <br> <br>";
           }
 
           document.getElementById("repo_detail").innerHTML =
